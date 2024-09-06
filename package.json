@@ -1,0 +1,33 @@
+{
+  "name": "customers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.emirates.group/scm/~s397876/customers.git"
+  },
+  "keywords": [
+    "Customers",
+    "API",
+    "server",
+    "secured",
+    "over",
+    "oAuth2.0"
+  ],
+  "author": "ajeerkhan@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@okta/jwt-verifier": "^4.0.1",
+    "@wesleytodd/openapi": "^1.1.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.2.0"
+  }
+}
