@@ -22,7 +22,7 @@ Next step is to download the project into your local system from Git repo.
   
 #### b. Go into the project folder and download the project.
  ##### i. Run below command to download the projects into your local system.
-    git clone https://github.com/ajeerkhan/vercel-customer-deployment.git 
+    git clone https://github.com/ajeerkhan/customers-api-server.git 
         
 #### c. Go into the project folder downloaded.
 

@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "1f054da6-2d1e-4b04-be4b-e44a37f2fd57",
+		"name": "Customers API v2[render.com]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "No Access Test Case",
+			"item": [
+				{
+					"name": "Step 1: Get Token Travel Agent [No customer access]",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"let token = response.access_token;",
+									"pm.environment.set(\"yourOktaAccessToken\", token);",
+									"console.log('Set new value : yourOktaAccessToken :', token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"zvERsbh7icfDZTJ4AtDWXnEpEU2R6TBW\",\n    \"client_secret\": \"Wka2yD2okIQjuU9qBbi3h5mGkb0sZLJl4dcLX4a4sNhgeeG9DdvtK79Hjs3eqdDZ\",\n    \"audience\": \"audience:customersApi\",\n    \"grant_type\": \"client_credentials\"\n}"
+						},
+						"url": {
+							"raw": "https://dev-7srau5wfamip5pmt.us.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"dev-7srau5wfamip5pmt",
+								"us",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2: Customer Read Endpoint",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3: Customer Update Endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Read Access Test Case",
+			"item": [
+				{
+					"name": "Non-EK-Travel-Agent-GetToken - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"let token = response.access_token;",
+									"pm.environment.set(\"yourOktaAccessToken\", token);",
+									"console.log('Set new value : yourOktaAccessToken :', token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"Igwv6SCyxpMAHTBB42QXqhlf3QsQv9w0\",\n    \"client_secret\": \"N7d4TjO5EW6c81smnUiaLzkTstP8tStwX-J8dtuTI5nRerTmW6gSJ1DHHY1Pk4VH\",\n    \"audience\": \"audience:customersApi\",\n    \"grant_type\": \"client_credentials\",\n    \"scope\": \"customer:read\"\n}"
+						},
+						"url": {
+							"raw": "https://dev-7srau5wfamip5pmt.us.auth0.com/oauth/token?",
+							"protocol": "https",
+							"host": [
+								"dev-7srau5wfamip5pmt",
+								"us",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2: Customer Read Endpoint",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3: Customer Update Endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Full Access Test Case",
+			"item": [
+				{
+					"name": "EK-Travel-Agent-GetToken - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"let token = response.access_token;",
+									"pm.environment.set(\"yourOktaAccessToken\", token);",
+									"console.log('Set new value : yourOktaAccessToken :', token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"9l8TIuaV8nL1VjVmeuCaBrSqWb0LKsxc\",\n    \"client_secret\": \"tnbXV7R0PZ4E4hPht-eVkZfxEiqOKU3b-smWQHIUtOjCa3gapO0qUflk1lssDBdK\",\n    \"audience\": \"audience:customersApi\",\n    \"grant_type\": \"client_credentials\",\n    \"scope\": \"customer:read customer:write\"\n}"
+						},
+						"url": {
+							"raw": "https://dev-7srau5wfamip5pmt.us.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"dev-7srau5wfamip5pmt",
+								"us",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2: Customer Read Endpoint",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3: Customer Update Endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{yourOktaAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "Application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://customers-api-server-demo.onrender.com/customer",
+							"protocol": "https",
+							"host": [
+								"customers-api-server-demo",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
