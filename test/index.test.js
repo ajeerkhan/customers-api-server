@@ -60,5 +60,25 @@ describe('Sanity test', () => {
         expect(res.body).toEqual({
         })
       })
+
+      test('/customer: protected api, has only customer:read access', async () => {
+        const accessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkU4TTEzNFp0MmlrYk85U0duRzRjMyJ9.eyJpc3MiOiJodHRwczovL2Rldi03c3JhdTV3ZmFtaXA1cG10LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJZ3d2NlNDeXhwTUFIVEJCNDJRWHFobGYzUXNRdjl3MEBjbGllbnRzIiwiYXVkIjoiYXVkaWVuY2U6Y3VzdG9tZXJzQXBpIiwiaWF0IjoxNzI1NjczNzM5LCJleHAiOjE3MjU3NjAxMzksInNjb3BlIjoiY3VzdG9tZXI6cmVhZCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6Iklnd3Y2U0N5eHBNQUhUQkI0MlFYcWhsZjNRc1F2OXcwIn0.c9q7hkcJi6YpZ_uOsJIN6aQdOBBPAOSYwnmJXRJi_ch6VhHlBRZXBXLGkPZlFuSR0gMtGNGdoP2m-r0DzS3G4fQtNNVgBk8wzmqQdG0ErpxkBnU9DXbxDUxfQwGb1yuinqIa5TmP_mbZYFuF5n-bzLHe-tPiZWxnnqZ8Ilr2ZKGknjlIN9i9rfckXiwoW6UN6dL6m8uCLB6VeYNWhvIdKF5MQ7EOGbcAcH3GVslX-eSOZnxtaw1E9M2Cv97VOkfHjx_Gh3o-1xgrejeBgNFGNiF3knvgyq8C5xGi5g6MsFQMvvdUfnwHo7sROKfM-vlMb6fUpt5GnbmYr5duYZIW6w";
+
+        const res = await request(app).patch('/customer').set('Authorization', accessToken);
+        expect(res.statusCode).toEqual(401);
+        console.log(res.body);
+        expect(res.body).toEqual({
+        })
+      })
+
+      test('/customer: protected api, has only customer:write access', async () => {
+        const accessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkU4TTEzNFp0MmlrYk85U0duRzRjMyJ9.eyJpc3MiOiJodHRwczovL2Rldi03c3JhdTV3ZmFtaXA1cG10LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI5bDhUSXVhVjhuTDFWalZtZXVDYUJyU3FXYjBMS3N4Y0BjbGllbnRzIiwiYXVkIjoiYXVkaWVuY2U6Y3VzdG9tZXJzQXBpIiwiaWF0IjoxNzI1NjczOTQ0LCJleHAiOjE3MjU3NjAzNDQsInNjb3BlIjoiY3VzdG9tZXI6cmVhZCBjdXN0b21lcjp3cml0ZSIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6IjlsOFRJdWFWOG5MMVZqVm1ldUNhQnJTcVdiMExLc3hjIn0.JwaDN6N9uqfeCzAjkjDdXFNXRpT4C3M6q0jsMx3YDP4tCf6xfXRvwFAJtZgUu1gXuoFk_Ht3lrDa0JwKuMecRGmF_3bqQD_YwJfw_WRT2BWFbVc4n_6Q0sdaG3wDh6GK6JIduWpTCfk9BvE13Wad6Owelry4WVUVbFLpU16HC2srUjaIJZGd4g4gpcWe-htuFsZRlV8zQ-k4YIgzLV31ND1uaV6rYkZFrTFOls2EiqbBP8t3LxjmKx5Iskfllp_rj7BjBnNAptjnbb8KVa6PoGRaicvU8X4hDqvbIXNg0cMICJx_IUOrWgq4zpBWAndjrWqLeNlHvDSvguYcApmaag";
+
+        const res = await request(app).patch('/customer').set('Authorization', accessToken);
+        expect(res.statusCode).toEqual(401);
+        console.log(res.body);
+        expect(res.body).toEqual({
+        })
+      })
       
   })
