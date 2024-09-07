@@ -83,3 +83,5 @@ const port = process.env.PORT || 8080;
 app.listen(port, ()=>{
     console.log(`Express Server started! at ${port}`);
 });
+
+module.exports = app;
